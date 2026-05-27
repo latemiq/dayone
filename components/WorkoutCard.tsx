@@ -1,7 +1,17 @@
 import { StyleSheet, Text, View, ScrollView, TouchableOpacity } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { useRouter } from 'expo-router';
 
-export default function WorkoutCard() {
+type Props = {
+    name: string;
+    exercises: number;
+    time: number;
+    lastDone: string;
+    warmup: number;
+}
+
+export default function WorkoutCard({ name, exercises, time, lastDone, warmup }: Props) {
+    const router = useRouter();
     return (
 
         <View style={styles.cards}>
@@ -11,18 +21,20 @@ export default function WorkoutCard() {
                         <MaterialCommunityIcons name="dumbbell" size={16} color="#d4ff3a" />
                     </View>
                     <View>
-                        <Text style={styles.cardText1}>Push day</Text>
-                        <Text style={styles.cardText2}>6 ćwiczeń · ~50 min</Text>
+                        <Text style={styles.cardText1}>{name}</Text>
+                        <Text style={styles.cardText2}>{exercises} ćwiczeń · ~{time} min</Text>
                     </View>
                 </View>
-                <Text style={{ color: '#737373', fontSize: 11 }}>2 dni temu</Text>
+                <Text style={{ color: '#737373', fontSize: 11 }}>{lastDone}</Text>
             </View>
             <View style={{ flexDirection: 'row', gap: 8, marginTop: 12 }}>
-                <TouchableOpacity style={styles.buttonStart}>
-                    <Text style={styles.buttonStartText}>Zacznij</Text>
+                <TouchableOpacity style={styles.buttonStart} onPress={() => router.push({ pathname: '/workout', params: { name: name } })}>
+                    <Text style={styles.buttonStartText}>
+                        Zacznij
+                    </Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.buttonWarmup}>
-                    <Text style={styles.buttonWarmupText}>5 min rozgrzewka</Text>
+                    <Text style={styles.buttonWarmupText}>{warmup} min rozgrzewka</Text>
                 </TouchableOpacity>
             </View>
         </View>

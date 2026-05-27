@@ -2,7 +2,7 @@ import { registerRootComponent } from 'expo';
 import App from './App';
 
 
-function index() {
+export default function index() {
     return (
         <App />
     );
