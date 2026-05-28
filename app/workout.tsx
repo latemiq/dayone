@@ -1,12 +1,43 @@
-import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity, TextInput } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import SetRow from '../components/SetRow';
+import ExerciseCard from '../components/ExerciseCard';
 
 export default function Workout() {
     const router = useRouter();
     const { name } = useLocalSearchParams();
     const [seconds, setSeconds] = React.useState(0);
+
+    const [sets, setSets] = useState([
+        { kg: '', reps: '', completed: false },
+        { kg: '', reps: '', completed: false },
+        { kg: '', reps: '', completed: false },
+        { kg: '', reps: '', completed: false },
+    ]);
+
+    const updateKg = (index: number, value: string) => {
+        const updated = [...sets];
+        updated[index].kg = value;
+        setSets(updated);
+    };
+
+    const updateReps = (index: number, value: string) => {
+        const updated = [...sets];
+        updated[index].reps = value;
+        setSets(updated);
+    };
+
+    const toggleSet = (index: number) => {
+        const updated = [...sets];
+        updated[index].completed = !updated[index].completed;
+        setSets(updated);
+    };
+
+    const addSet = () => {
+        setSets([...sets, { kg: '', reps: '', completed: false }]);
+    };
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -22,14 +53,16 @@ export default function Workout() {
         const seconds = s % 60;
         return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
     };
+
     return (
         <ScrollView style={{ flex: 1, backgroundColor: '#0a0a0b' }}>
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', padding: 20 }}>
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
-                    <TouchableOpacity onPress={() => router.push('/App')} style={{ backgroundColor: 'rgba(255,68,68,0.15)', justifyContent: 'center', alignItems: 'center', width: 32, height: 32, borderRadius: 8 }}>
-                        <MaterialCommunityIcons name="close" size={16} color="#ff4444" />
-                    </TouchableOpacity>
-                </View>
+                    <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
+                        <TouchableOpacity onPress={() => router.back()} style={{ backgroundColor: 'rgba(255,68,68,0.15)', justifyContent: 'center', alignItems: 'center', width: 32, height: 32, borderRadius: 8 }}>
+                            <MaterialCommunityIcons name="close" size={16} color="#ff4444" />
+                        </TouchableOpacity>
+                    </View>
                     <View>
                         <Text style={{ color: '#fff', fontSize: 18, fontWeight: '500' }}>{name}</Text>
                         <Text style={{ color: '#aaa', fontSize: 14 }}>W trakcie...</Text>
@@ -40,6 +73,18 @@ export default function Workout() {
                     <Text style={{ color: '#fff', fontSize: 14, fontWeight: 500 }}>{formatTime(seconds)}</Text>
                 </View>
             </View>
+
+            <ExerciseCard
+                name="Wyciskanie sztangą"
+                index={0}
+                total={6}
+                sets={sets}
+                onKgChange={updateKg}
+                onRepsChange={updateReps}
+                onToggle={toggleSet}
+                onAddSet={addSet}
+            />
+
         </ScrollView>
     );
 }

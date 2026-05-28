@@ -71,6 +71,7 @@ export default function App() {
           <MaterialCommunityIcons name="account-outline" color="#d4ff3a" size={20} />
         </TouchableOpacity>
       </View></>
+      
   );
 }
 
