@@ -1,15 +1,13 @@
-import { View, Text, ScrollView, TouchableOpacity, TextInput } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import React, { useEffect, useState } from 'react';
-import SetRow from '../components/SetRow';
 import ExerciseCard from '../components/ExerciseCard';
 
 export default function Workout() {
     const router = useRouter();
     const { name } = useLocalSearchParams();
     const [seconds, setSeconds] = React.useState(0);
-
     const [sets, setSets] = useState([
         { kg: '', reps: '', completed: false },
         { kg: '', reps: '', completed: false },
@@ -54,6 +52,10 @@ export default function Workout() {
         return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
     };
 
+    const deleteSet = (index: number) => {
+        setSets(sets.filter((_, i) => i !== index));
+    };
+
     return (
         <ScrollView style={{ flex: 1, backgroundColor: '#0a0a0b' }}>
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', padding: 20 }}>
@@ -83,6 +85,7 @@ export default function Workout() {
                 onRepsChange={updateReps}
                 onToggle={toggleSet}
                 onAddSet={addSet}
+                onDeleteSet={deleteSet}
             />
 
         </ScrollView>

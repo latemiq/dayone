@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, ScrollView, TouchableOpacity } from 'react-nati
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import WorkoutCard from '../components/WorkoutCard';
 import { useState } from 'react';
+import { colors } from '../constans/colors';
 
 export default function App() {
 
@@ -78,29 +79,29 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#0a0a0b',
+    backgroundColor: colors.background,
   },
   menu: {
-    backgroundColor: '#000000',
+    backgroundColor: colors.cardDark,
     paddingBottom: 16,
     paddingTop: 50,
   },
   streakBox: {
-    backgroundColor: '#d4ff3a',
+    backgroundColor: colors.accent,
     padding: 20,
     margin: 10,
     borderRadius: 25,
   },
   streakBoxtext1: {
-    color: '#000000',
+    color: colors.textPrimary,
     fontWeight: 'bold',
     fontSize: 24,
   },
   text: {
-    color: '#737336',
+    color: colors.textMuted,
   },
   text1: {
-    color: '#FFFFFF',
+    color: colors.textPrimary,
     fontSize: 22,
     fontWeight: 'bold',
   }
