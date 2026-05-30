@@ -30,19 +30,19 @@ export default function App() {
     <><ScrollView>
       <View style={styles.container}>
         <View style={styles.menu}>
-          <Text style={{ color: '#737373' }}>Poniedziałek, 26 maja</Text>
+          <Text style={{ color: colors.textSubtle }}>Poniedziałek, 26 maja</Text>
           <Text style={styles.text1}>Hej, Marek</Text>
         </View>
         <StatusBar style="light" />
         <View style={styles.streakBox}>
           <Text style={styles.text}>SERIA TRENINGOWA</Text>
-          <Text style={{ fontSize: 22, fontWeight: '500', color: '#0a0a0b' }}>12 dni</Text>
+          <Text style={{ fontSize: 22, fontWeight: '500', color: colors.onAccent }}>12 dni</Text>
         </View>
 
         <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginHorizontal: 10, marginTop: 20 }}>
-          <Text style={{ color: '#737373', fontSize: 14, marginLeft: 10, marginBottom: 8 }}>Twoje treningi</Text>
+          <Text style={{ color: colors.textSubtle, fontSize: 14, marginLeft: 10, marginBottom: 8 }}>Twoje treningi</Text>
           <TouchableOpacity onPress={handleNewWorkout}>
-            <Text style={{ color: '#737373', fontSize: 14, marginLeft: 10, marginBottom: 8 }}>+ Nowy</Text>
+            <Text style={{ color: colors.textSubtle, fontSize: 14, marginLeft: 10, marginBottom: 8 }}>+ Nowy</Text>
           </TouchableOpacity>
         </View>
 
@@ -58,18 +58,18 @@ export default function App() {
         ))}
       </View>
     </ScrollView>
-      <View style={{ backgroundColor: '#000000', padding: 16, flexDirection: 'row', justifyContent: 'space-around' }}>
+      <View style={{ backgroundColor: colors.tabBar, padding: 16, flexDirection: 'row', justifyContent: 'space-around' }}>
         <TouchableOpacity onPress={() => console.log('Strona główna')}>
-          <MaterialCommunityIcons name="home" color="#d4ff3a" size={20} />
+          <MaterialCommunityIcons name="home" color={colors.accent} size={20} />
         </TouchableOpacity>
         <TouchableOpacity onPress={() => console.log('Historia')}>
-          <MaterialCommunityIcons name="history" color="#d4ff3a" size={20} />
+          <MaterialCommunityIcons name="history" color={colors.accent} size={20} />
         </TouchableOpacity>
         <TouchableOpacity onPress={() => console.log('Statystyki')}>
-          <MaterialCommunityIcons name="chart-line" color="#d4ff3a" size={20} />
+          <MaterialCommunityIcons name="chart-line" color={colors.accent} size={20} />
         </TouchableOpacity>
         <TouchableOpacity onPress={() => console.log('Profil')}>
-          <MaterialCommunityIcons name="account-outline" color="#d4ff3a" size={20} />
+          <MaterialCommunityIcons name="account-outline" color={colors.accent} size={20} />
         </TouchableOpacity>
       </View></>
       
@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
   },
   text: {
-    color: colors.textMuted,
+    color: colors.onAccentMuted,
   },
   text1: {
     color: colors.textPrimary,

@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, ScrollView, TouchableOpacity } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
+import { colors } from '../constans/colors';
 
 type Props = {
     name: string;
@@ -18,14 +19,14 @@ export default function WorkoutCard({ name, exercises, time, lastDone, warmup }:
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
                 <View style={{ flexDirection: 'row', gap: 10 }}>
                     <View style={styles.cardIcon}>
-                        <MaterialCommunityIcons name="dumbbell" size={16} color="#d4ff3a" />
+                        <MaterialCommunityIcons name="dumbbell" size={16} color={colors.accent} />
                     </View>
                     <View>
                         <Text style={styles.cardText1}>{name}</Text>
                         <Text style={styles.cardText2}>{exercises} ćwiczeń · ~{time} min</Text>
                     </View>
                 </View>
-                <Text style={{ color: '#737373', fontSize: 11 }}>{lastDone}</Text>
+                <Text style={{ color: colors.textSubtle, fontSize: 11 }}>{lastDone}</Text>
             </View>
             <View style={{ flexDirection: 'row', gap: 8, marginTop: 12 }}>
                 <TouchableOpacity style={styles.buttonStart} onPress={() => router.push({ pathname: '/workout', params: { name: name } })}>
@@ -44,13 +45,13 @@ export default function WorkoutCard({ name, exercises, time, lastDone, warmup }:
 
 const styles = StyleSheet.create({
     cards: {
-        backgroundColor: '#16161a',
+        backgroundColor: colors.card,
         margin: 10,
         borderRadius: 25,
         padding: 20,
     },
     cardText1: {
-        color: '#FFFFFF',
+        color: colors.textPrimary,
         fontSize: 22,
         paddingLeft: 10,
         fontWeight: 'bold',
@@ -58,10 +59,10 @@ const styles = StyleSheet.create({
     cardText2: {
         fontSize: 14,
         padding: 10,
-        color: '#737373',
+        color: colors.textSubtle,
     },
     cardIcon: {
-        backgroundColor: 'rgba(212,255,58,0.12)',
+        backgroundColor: colors.accentBg,
         width: 32,
         height: 32,
         borderRadius: 8,
@@ -70,22 +71,22 @@ const styles = StyleSheet.create({
     },
     buttonStart: {
         borderRadius: 25,
-        backgroundColor: "#d4ff3a",
+        backgroundColor: colors.accent,
         padding: 10,
     },
     buttonStartText: {
-        color: '#000000',
+        color: colors.onAccent,
         fontWeight: 'bold',
     },
     buttonWarmup: {
         borderRadius: 25,
-        backgroundColor: "#16161a",
+        backgroundColor: colors.card,
         borderWidth: 1,
-        borderColor: "#d4ff3a",
+        borderColor: colors.accent,
         padding: 10,
     },
     buttonWarmupText: {
-        color: "#d4ff3a",
+        color: colors.accent,
         fontWeight: 'bold',
     },
 });

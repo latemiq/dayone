@@ -1,9 +1,10 @@
 import { View, Text } from 'react-native';
+import { colors } from '../constans/colors';
 
 export default function History() {
   return (
-    <View style={{ flex: 1, backgroundColor: '#0a0a0b', justifyContent: 'center', alignItems: 'center' }}>
-      <Text style={{ color: '#fff' }}>Historia</Text>
+    <View style={{ flex: 1, backgroundColor: colors.background, justifyContent: 'center', alignItems: 'center' }}>
+      <Text style={{ color: colors.textPrimary }}>Historia</Text>
     </View>
   );
 }

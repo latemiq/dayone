@@ -3,6 +3,7 @@ import { useLocalSearchParams, useRouter } from 'expo-router';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import React, { useEffect, useState } from 'react';
 import ExerciseCard from '../components/ExerciseCard';
+import { colors } from '../constans/colors';
 
 export default function Workout() {
     const router = useRouter();
@@ -57,22 +58,22 @@ export default function Workout() {
     };
 
     return (
-        <ScrollView style={{ flex: 1, backgroundColor: '#0a0a0b' }}>
+        <ScrollView style={{ flex: 1, backgroundColor: colors.background }}>
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', padding: 20 }}>
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
                     <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
-                        <TouchableOpacity onPress={() => router.back()} style={{ backgroundColor: 'rgba(255,68,68,0.15)', justifyContent: 'center', alignItems: 'center', width: 32, height: 32, borderRadius: 8 }}>
-                            <MaterialCommunityIcons name="close" size={16} color="#ff4444" />
+                        <TouchableOpacity onPress={() => router.back()} style={{ backgroundColor: colors.dangerBg, justifyContent: 'center', alignItems: 'center', width: 32, height: 32, borderRadius: 8 }}>
+                            <MaterialCommunityIcons name="close" size={16} color={colors.danger} />
                         </TouchableOpacity>
                     </View>
                     <View>
-                        <Text style={{ color: '#fff', fontSize: 18, fontWeight: '500' }}>{name}</Text>
-                        <Text style={{ color: '#aaa', fontSize: 14 }}>W trakcie...</Text>
+                        <Text style={{ color: colors.textPrimary, fontSize: 18, fontWeight: '500' }}>{name}</Text>
+                        <Text style={{ color: colors.textMuted, fontSize: 14 }}>W trakcie...</Text>
                     </View>
                 </View>
-                <View style={{ backgroundColor: '#16161a', borderRadius: 99, paddingVertical: 8, paddingHorizontal: 14, flexDirection: 'row', alignItems: 'center', gap: 6 }}>
-                    <MaterialCommunityIcons name="clock-outline" size={14} color="#d4ff3a" />
-                    <Text style={{ color: '#fff', fontSize: 14, fontWeight: 500 }}>{formatTime(seconds)}</Text>
+                <View style={{ backgroundColor: colors.inputBg, borderRadius: 99, paddingVertical: 8, paddingHorizontal: 14, flexDirection: 'row', alignItems: 'center', gap: 6 }}>
+                    <MaterialCommunityIcons name="clock-outline" size={14} color={colors.accent} />
+                    <Text style={{ color: colors.textPrimary, fontSize: 14, fontWeight: 500 }}>{formatTime(seconds)}</Text>
                 </View>
             </View>
 
